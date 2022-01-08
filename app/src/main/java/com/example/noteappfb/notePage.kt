@@ -3,6 +3,8 @@ package com.example.noteappfb
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -58,18 +60,52 @@ class notePage : AppCompatActivity() {
         allusernotes = FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(query,firebasemodel::class.java).build()
 
 
+        inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val notetitle: TextView
+            val notecontent: TextView
+            var mnote: LinearLayout
 
-
-     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val notetitle: TextView
-        private val notecontent: TextView
-        var mnote: LinearLayout
-
-        init {
-            notetitle = itemView.findViewById(R.id.notetitle)
-            notecontent = itemView.findViewById(R.id.notecontant)
-            mnote = itemView.findViewById(R.id.note)
+            init {
+                notetitle = itemView.findViewById(R.id.notetitle)
+                notecontent = itemView.findViewById(R.id.notecontant)
+                mnote = itemView.findViewById(R.id.note)
+            }
         }
-    }
+
+
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.logoutfab -> {
+                    firebaseAuth!!.signOut()
+                    finish()
+                    startActivity(Intent(this@notePage, MainActivity::class.java))
+                }
+            }
+            return super.onOptionsItemSelected(item)
+        }
+
+        fun onStart() {
+            super.onStart()
+            noteAdapter!!.startListening()
+        }
+
+        fun onStop() {
+            super.onStop()
+            if (noteAdapter != null) {
+                noteAdapter!!.stopListening()
+            }
+        }
+
+//     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//        private val notetitle: TextView
+//        private val notecontent: TextView
+//        var mnote: LinearLayout
+//
+//        init {
+//            notetitle = itemView.findViewById(R.id.notetitle)
+//            notecontent = itemView.findViewById(R.id.notecontant)
+//            mnote = itemView.findViewById(R.id.note)
+//        }
+//    }
 }
 
