@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".createNote">
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbarnote"
+        android:background="@color/white">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="12dp"
+            android:paddingRight="10dp"
+            android:textSize="20sp"
+            android:hint="enter your note here "
+            android:id="@+id/createtitlenote"/>
+
+    </Toolbar>
+
+    <EditText
+        android:id="@+id/createnotedet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarnote"
+        android:background="@color/white"
+        android:hint="enter your details "
+        android:textSize="10dp"
+        android:gravity="top|left"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/ic_add_task"
+        android:backgroundTint="#f9f9f9"
+        app:maxImageSize="40dp"
+        android:id="@+id/saveNotefab"
+        />
+
+</RelativeLayout>
